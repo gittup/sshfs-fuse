@@ -1,0 +1,21 @@
+ifeq (@(FUSE_FS),y)
+include_rules
+
+srcs += sshfs.c
+srcs += cache.c
+
+CFLAGS += -I$(GITTUP_ROOT)/fuse/include
+CFLAGS += -I$(GITTUP_ROOT)/uClibc/libpthread/linuxthreads.old/
+CFLAGS += -I$(GITTUP_ROOT)/glib
+CFLAGS += -D_FILE_OFFSET_BITS=64
+CFLAGS += -DFUSE_USE_VERSION=26
+
+libs += $(GITTUP_ROOT)/fuse/libfuse.a
+libs += $(GITTUP_ROOT)/glib/libglib.a
+libs += $(GITTUP_ROOT)/uClibc/libpthread/linuxthreads.old/libpthread.a
+
+CFLAGS += -W -Wall
+
+: foreach $(srcs) |> !cc |> %B.o
+: *.o $(libs) |> !ld |> sshfs
+endif

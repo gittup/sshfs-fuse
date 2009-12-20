@@ -1,0 +1,3 @@
+ifeq (@(FUSE_FS),y)
+: foreach $(TUP_CWD)/sshfs |> !cp |> %b
+endif
