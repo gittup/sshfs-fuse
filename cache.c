@@ -589,7 +589,7 @@ int cache_parse_options(struct fuse_args *args)
 	cache.stat_timeout = DEFAULT_CACHE_TIMEOUT;
 	cache.dir_timeout = DEFAULT_CACHE_TIMEOUT;
 	cache.link_timeout = DEFAULT_CACHE_TIMEOUT;
-	cache.on = 1;
+	cache.on = 0;
 
 	return fuse_opt_parse(args, &cache, cache_opts, NULL);
 }
