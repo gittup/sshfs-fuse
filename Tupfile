@@ -1,4 +1,4 @@
-ifeq (@(FUSE_FS),y)
+ifdef FUSE_FS
 include_rules
 
 srcs += sshfs.c
